@@ -1,0 +1,52 @@
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+  const Ticket = sequelize.define('Ticket', {
+    channelId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    creatorId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
+    description: {
+      type: DataTypes.TEXT
+    },
+    status: {
+      type: DataTypes.ENUM('open', 'archived', 'deleted'),
+      defaultValue: 'open'
+    },
+    usersAdded: {
+      type: DataTypes.TEXT, // Store as JSON string
+      defaultValue: '[]',
+      get() {
+        const rawValue = this.getDataValue('usersAdded');
+        return JSON.parse(rawValue);
+      },
+      set(val) {
+        this.setDataValue('usersAdded', JSON.stringify(val));
+      }
+    },
+    usersRemoved: {
+      type: DataTypes.TEXT, // Store as JSON string
+      defaultValue: '[]',
+      get() {
+        const rawValue = this.getDataValue('usersRemoved');
+        return JSON.parse(rawValue);
+      },
+      set(val) {
+        this.setDataValue('usersRemoved', JSON.stringify(val));
+      }
+    }
+  }, {
+    timestamps: false
+  });
+
+  return Ticket;
+};

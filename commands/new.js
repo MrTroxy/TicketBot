@@ -24,7 +24,8 @@ module.exports = {
 
     await interaction.reply({ 
       embeds: [embed], 
-      components: [new ActionRowBuilder().addComponents(button)]
+      components: [new ActionRowBuilder().addComponents(button)] 
+      // Removed 'ephemeral: true' to make the message public
     });
   },
 };
