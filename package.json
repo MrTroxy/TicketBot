@@ -1,0 +1,16 @@
+{
+    "name": "TicketBot",
+    "version": "1.0.0",
+    "description": "A Discord ticket system bot",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "discord.js": "^14.11.0",
+      "dotenv": "^16.3.1",
+      "mysql2": "^3.6.0",
+      "mongoose": "^7.5.0",
+      "sqlite3": "^5.1.6"
+    }
+  }
